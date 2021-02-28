@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tasks">Tasks</string>
+    <string name="notes">Notes</string>
+    <string name="add_task">Add Task</string>
+    <string name="you_do_not_have_in_tasks">You do not have any tasks!</string>
+</resources>

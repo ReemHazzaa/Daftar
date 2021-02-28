@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_search"
+        android:orderInCategory="1"
+        android:title="@string/search_notes"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:iconTint="@color/title_color"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_delete_all"
+        android:icon="@drawable/ic_delete"
+        android:orderInCategory="2"
+        android:title="@string/delete_all"
+        app:iconTint="@color/title_color"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:icon="@drawable/ic_round_sort"
+        android:id="@+id/menu_sortBy"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="3"
+        app:iconTint="@color/title_color"
+        android:title="@string/sort_notes_by">
+        <menu>
+            <item
+                android:id="@+id/menu_priority_high"
+                android:icon="@drawable/ic_trending_up"
+                android:title="@string/priority_high"
+                app:iconTint="@color/title_color"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/menu_priority_low"
+                android:icon="@drawable/ic_trending_down"
+                android:title="@string/priority_low"
+                app:iconTint="@color/title_color"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/tasksListFragment">
+
+    <!-- Tasks -->
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.reemhazzaa.daftar.tasks.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task">
+        <action
+            android:id="@+id/action_addTaskFragment_to_tasksListFragment"
+            app:destination="@id/tasksListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tasksListFragment"
+        android:name="com.reemhazzaa.daftar.tasks.TasksListFragment"
+        android:label="fragment_tasks_list"
+        tools:layout="@layout/fragment_tasks_list">
+        <action
+            android:id="@+id/action_tasksListFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_tasksListFragment_to_updateTaskFragment"
+            app:destination="@id/updateTaskFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateTaskFragment"
+        android:name="com.reemhazzaa.daftar.tasks.UpdateTaskFragment"
+        android:label="fragment_update_task"
+        tools:layout="@layout/fragment_update_task">
+        <action
+            android:id="@+id/action_updateTaskFragment_to_tasksListFragment"
+            app:destination="@id/tasksListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+
+    <!-- Notes -->
+    <fragment
+        android:id="@+id/notesListFragment"
+        android:name="com.reemhazzaa.daftar.notes.NotesListFragment"
+        android:label="fragment_notes_list"
+        tools:layout="@layout/fragment_notes_list">
+        <action
+            android:id="@+id/action_notesListFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_notesListFragment_to_updateNoteFragment"
+            app:destination="@id/updateNoteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.reemhazzaa.daftar.notes.AddNoteFragment"
+        android:label="fragment_add_note"
+        app:enterAnim="@anim/from_left"
+        app:exitAnim="@anim/to_left"
+        tools:layout="@layout/fragment_add_note">
+        <action
+            android:id="@+id/action_addNoteFragment_to_notesListFragment"
+            app:destination="@id/notesListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateNoteFragment"
+        android:name="com.reemhazzaa.daftar.notes.UpdateNoteFragment"
+        android:label="fragment_update_note"
+        tools:layout="@layout/fragment_update_note">
+        <action
+            android:id="@+id/action_updateNoteFragment_to_notesListFragment"
+            app:destination="@id/notesListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+</navigation>

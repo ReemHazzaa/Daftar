@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Daftar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tasks">Tasks</string>
+    <string name="notes">Notes</string>
+    <string name="add_task">Add Task</string>
+    <string name="you_do_not_have_in_tasks">You do not have any tasks!</string>
+    <string name="your_task_list_is_empty">Your tasks list is empty!!</string>
+    <string name="your_notes_list_is_empty">Your notes list is empty!!</string>
+    <string name="add_note">Add Note</string>
+    <string name="enter_note_description">Enter note description…</string>
+    <string name="enter_note_title">Enter note title</string>
+    <string name="update_note">Update Note</string>
+    <string name="enter_task_title">Enter task title</string>
+    <string name="update_task">Update Task</string>
+    <string name="search_notes">Search notes</string>
+    <string name="sort_notes_by">Sort notes by</string>
+    <string name="priority_high">Priority high</string>
+    <string name="priority_low">Priority low</string>
+    <string name="delete_all">Delete all notes</string>
+    <string name="sort_tasks_by">Sort tasks by</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="delete_all_tasks">Delete all tasks</string>
+
+    <string-array name="priorities">
+        <item>High priority</item>
+        <item>Medium priority</item>
+        <item>Low priority</item>
+    </string-array>
+</resources>
