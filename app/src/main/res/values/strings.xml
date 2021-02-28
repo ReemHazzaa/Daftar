@@ -24,7 +24,7 @@
     <string name="delete">Delete</string>
     <string name="add">Add</string>
     <string name="delete_all_tasks">Delete all tasks</string>
-    <string name="enter_task_description">Enter task description</string>
+    <string name="enter_task_description">Enter task description…</string>
 
     <string-array name="priorities">
         <item>High priority</item>
