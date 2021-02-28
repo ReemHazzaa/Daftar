@@ -119,7 +119,7 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/aladin"
             android:gravity="start"
-            android:hint="Enter task description"
+            android:hint="@string/enter_task_description"
             android:imeOptions="actionDone"
             android:inputType="textMultiLine"
             android:paddingHorizontal="10dp"
