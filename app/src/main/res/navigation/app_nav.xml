@@ -49,6 +49,9 @@
             app:destination="@id/tasksListFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
+        <argument
+            android:name="currentItem"
+            app:argType="com.reemhazzaa.daftar.data.tasks.models.Task" />
     </fragment>
 
     <!-- Notes -->

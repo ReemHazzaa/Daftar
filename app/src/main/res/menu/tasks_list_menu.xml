@@ -19,12 +19,12 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:icon="@drawable/ic_round_sort"
         android:id="@+id/menu_sortBy"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_round_sort"
         android:orderInCategory="3"
+        android:title="@string/sort_tasks_by"
         app:iconTint="@color/title_color"
-        android:title="@string/sort_tasks_by">
+        app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/menu_priority_high"

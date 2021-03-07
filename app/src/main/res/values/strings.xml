@@ -24,6 +24,13 @@
     <string name="add">Add</string>
     <string name="delete_all_tasks">Delete all tasks</string>
     <string name="enter_task_description">Enter task description…</string>
+    <string name="create_reminder">Create Reminder</string>
+    <string name="create_calendar_event">Create Calendar Event</string>
+    <string name="cant_be_empty">Required field</string>
+    <string name="success_add">Successfully added</string>
+    <string name="success_update">Successfully updated</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string-array name="priorities">
         <item>High priority</item>

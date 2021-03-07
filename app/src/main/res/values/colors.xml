@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="pink_primary">#ad1457</color>
-    <color name="pink_light">#e35183</color>
-    <color name="pink_dark">#78002e</color>
+    <color name="pink_primary">#007C7C</color>
+    <color name="pink_light">#30004A4A</color>
+    <color name="pink_dark">#004A4A</color>
 
     <color name="amber_primary">#ffa000</color>
     <color name="amber_light">#ffd149</color>
@@ -14,4 +14,14 @@
     <color name="title_color">@color/black</color>
     <color name="add_cardView_color">@color/pink_dark</color>
     <color name="spinner_item_color">@color/black</color>
+
+    <color name="red_dark">#990F04</color>
+    <color name="red_light">#30990F04</color>
+
+    <color name="green_dark">#29AB87</color>
+    <color name="green_light">#2029AB87</color>
+
+    <color name="yellow_dark">#F7D100</color>
+    <color name="yellow_light">#30F7D100</color>
+
 </resources>

@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners android:radius="20dp" />
-    <solid android:color="@color/pink_dark" />
-    <stroke android:width="2dp" android:color="@color/pink_dark" />
+    <solid android:color="@android:color/transparent" />
+    <stroke android:width="3dp" android:color="@color/add_cardView_color" />
 
 </shape>

@@ -4,4 +4,11 @@
     <string name="notes">Notes</string>
     <string name="add_task">Add Task</string>
     <string name="you_do_not_have_in_tasks">You do not have any tasks!</string>
+    <string name="create_reminder">Create Reminder</string>
+    <string name="create_calendar_event">Create Calendar Event</string>
+    <string name="cant_be_empty">Required field</string>
+    <string name="success_add">Successfully added</string>
+    <string name="success_update">Successfully updated</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
