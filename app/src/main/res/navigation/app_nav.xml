@@ -8,7 +8,7 @@
     <!-- Tasks -->
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.reemhazzaa.daftar.tasks.AddTaskFragment"
+        android:name="com.reemhazzaa.daftar.tasks.fragments.AddTaskFragment"
         android:label="fragment_add_task"
         tools:layout="@layout/fragment_add_task">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/tasksListFragment"
-        android:name="com.reemhazzaa.daftar.tasks.TasksListFragment"
+        android:name="com.reemhazzaa.daftar.tasks.fragments.tasksList.TasksListFragment"
         android:label="fragment_tasks_list"
         tools:layout="@layout/fragment_tasks_list">
         <action
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/updateTaskFragment"
-        android:name="com.reemhazzaa.daftar.tasks.UpdateTaskFragment"
+        android:name="com.reemhazzaa.daftar.tasks.fragments.UpdateTaskFragment"
         android:label="fragment_update_task"
         tools:layout="@layout/fragment_update_task">
         <action
@@ -51,7 +51,7 @@
             app:exitAnim="@anim/to_right" />
         <argument
             android:name="currentItem"
-            app:argType="com.reemhazzaa.daftar.data.tasks.models.Task" />
+            app:argType="com.reemhazzaa.daftar.tasks.data.models.Task" />
     </fragment>
 
     <!-- Notes -->

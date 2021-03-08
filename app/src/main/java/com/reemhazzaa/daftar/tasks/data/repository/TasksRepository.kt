@@ -1,8 +1,8 @@
-package com.reemhazzaa.daftar.data.tasks.repository
+package com.reemhazzaa.daftar.tasks.data.repository
 
 import androidx.lifecycle.LiveData
-import com.reemhazzaa.daftar.data.tasks.TasksDao
-import com.reemhazzaa.daftar.data.tasks.models.Task
+import com.reemhazzaa.daftar.tasks.data.TasksDao
+import com.reemhazzaa.daftar.tasks.data.models.Task
 
 class TasksRepository(private val tasksDao: TasksDao) {
     val getAllData: LiveData<List<Task>> = tasksDao.getAllTasks()

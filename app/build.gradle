@@ -77,4 +77,5 @@ dependencies {
 
     // RecyclerView Animator
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
 }

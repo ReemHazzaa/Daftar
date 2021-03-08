@@ -1,19 +1,16 @@
-package com.epicsystems.crm.Contacts
+package com.reemhazzaa.daftar.tasks.fragments.tasksList
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.reemhazzaa.daftar.R
-import com.reemhazzaa.daftar.data.tasks.models.Priority
-import com.reemhazzaa.daftar.data.tasks.models.Task
-import com.reemhazzaa.daftar.tasks.TasksListFragmentDirections
+import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.parseIndicatorBackgroundBasedOnPriority
 import com.reemhazzaa.daftar.tasks.parseItemBackgroundBasedOnPriority
 
@@ -33,6 +30,8 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
         var titleTV: TextView = itemView.findViewById(R.id.titleTV)
         var descTV: TextView = itemView.findViewById(R.id.descTV)
         var darkColorCV: CardView = itemView.findViewById(R.id.darkColorCV)
+        var setDateBT: TextView = itemView.findViewById(R.id.setDateBT)
+        var setTimeBT: TextView = itemView.findViewById(R.id.setTimeBT)
 
     }
 
@@ -58,6 +57,8 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
         val ctx = holder.titleTV.context
         holder.titleTV.text = list[position].title
         holder.descTV.text = list[position].description
+        holder.setDateBT.text = list[position].date
+        holder.setTimeBT.text = list[position].time
 
         holder.itemView.setOnClickListener {
             val action = TasksListFragmentDirections.actionTasksListFragmentToUpdateTaskFragment(list[position])

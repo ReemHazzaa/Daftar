@@ -1,4 +1,4 @@
-package com.reemhazzaa.daftar.data.tasks.models
+package com.reemhazzaa.daftar.tasks.data.models
 
 enum class Priority {
     HIGH,

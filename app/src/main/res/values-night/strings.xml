@@ -11,4 +11,8 @@
     <string name="success_update">Successfully updated</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="create_a_task">Create a task</string>
+    <string name="task_title">Task title</string>
+    <string name="task_priority">Task priority</string>
+    <string name="select_time">Select time</string>
 </resources>

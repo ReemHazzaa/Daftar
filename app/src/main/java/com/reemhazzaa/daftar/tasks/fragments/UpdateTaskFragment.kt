@@ -1,4 +1,4 @@
-package com.reemhazzaa.daftar.tasks
+package com.reemhazzaa.daftar.tasks.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -11,15 +11,19 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.reemhazzaa.daftar.R
-import com.reemhazzaa.daftar.data.tasks.models.Task
-import com.reemhazzaa.daftar.data.tasks.viewModel.TaskViewModel
+import com.reemhazzaa.daftar.tasks.data.models.Task
+import com.reemhazzaa.daftar.tasks.data.viewModel.SharedViewModel
+import com.reemhazzaa.daftar.tasks.data.viewModel.TaskViewModel
 import com.reemhazzaa.daftar.databinding.FragmentUpdateTaskBinding
+import com.reemhazzaa.daftar.tasks.*
+import com.reemhazzaa.daftar.tasks.utils.hideVirtualKeyboard
 
 class UpdateTaskFragment : Fragment() {
     private var _binding: FragmentUpdateTaskBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<UpdateTaskFragmentArgs>()
     private val tasksViewModel: TaskViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +42,7 @@ class UpdateTaskFragment : Fragment() {
             titleET.setText(currentItem.title)
             taskDescriptionET.setText(currentItem.description)
             spinner.setSelection(parsePriorityToInt(currentItem.priority))
-            spinner.onItemSelectedListener = spinnerListener(requireContext())
+            spinner.onItemSelectedListener = sharedViewModel.listener
             updateTaskButton.setOnClickListener {
                 attemptUpdateItemInDb()
             }
@@ -112,8 +116,8 @@ class UpdateTaskFragment : Fragment() {
             title = title,
             description = description,
             priority = parsePriorityIntToString(priority),
-            event = event,
-            alarm = reminder
+            date = event,
+            time = reminder
         )
         tasksViewModel.updateData(task)
         onOperationSuccess(getString(R.string.success_update))

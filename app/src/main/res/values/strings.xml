@@ -31,6 +31,17 @@
     <string name="success_update">Successfully updated</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="create_a_task">Create a task</string>
+    <string name="task_title">Task title</string>
+    <string name="task_priority">Task priority</string>
+    <string name="select_time">Select time</string>
+    <string name="select_date">Select date</string>
+    <string name="get_alert_for_this_task">Get alert for this task</string>
+    <string name="done">Done</string>
+    <string name="task_alert">Task alert</string>
+    <string name="task_description">Task description</string>
+    <string name="date_time_error">Please, enter time and date</string>
+    <string name="invalid_date">Invalid date</string>
 
     <string-array name="priorities">
         <item>High priority</item>

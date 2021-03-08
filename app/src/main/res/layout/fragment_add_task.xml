@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/titleTV"
             android:layout_width="match_parent"
@@ -25,41 +24,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:fontFamily="@font/aladin"
-                android:text="@string/add_task"
+                android:text="@string/create_a_task"
                 android:textColor="@color/title_color"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
-            android:id="@+id/taskTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
+            android:layout_height="0dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:orientation="horizontal"
+            android:layout_marginBottom="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleTV">
+            app:layout_constraintTop_toBottomOf="@+id/titleTV">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                app:cardBackgroundColor="@color/add_cardView_color"
-                app:cardCornerRadius="10dp" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/alegreya_sc"
+                android:text="@string/task_title"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/titleET"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="10"
-                android:background="@color/pink_light"
+                android:background="@drawable/outlined_et"
                 android:fontFamily="@font/aladin"
                 android:hint="@string/enter_task_title"
                 android:imeOptions="actionNext"
@@ -68,175 +67,167 @@
                 android:paddingHorizontal="10dp"
                 android:textSize="20sp" />
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/alegreya_sc"
+                android:text="@string/task_description"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/taskPriority"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="24dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/taskTitle">
+            <EditText
+                android:id="@+id/taskDescriptionET"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/outlined_et"
+                android:fontFamily="@font/aladin"
+                android:hint="@string/enter_task_description"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:lines="1"
+                android:paddingHorizontal="10dp"
+                android:textSize="20sp" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                app:cardBackgroundColor="@color/add_cardView_color"
-                app:cardCornerRadius="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/alegreya_sc"
+                android:text="@string/task_priority"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="10"
-                android:background="@color/pink_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:entries="@array/priorities"
                 android:paddingHorizontal="10dp"
                 android:spinnerMode="dropdown"
                 android:textSize="20sp"
                 tools:listitem="@layout/item_spinner" />
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/alegreya_sc"
+                android:text="@string/task_alert"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/reminder"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/taskPriority">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                app:cardBackgroundColor="@color/add_cardView_color"
-                app:cardCornerRadius="10dp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/setTimeBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/outlined_et"
+                    android:drawableStart="@drawable/ic_circular_alarm_clock_tool"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/aladin"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/select_time"
+                    android:textAllCaps="false" />
 
-            <EditText
-                android:id="@+id/taskReminderET"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="10"
-                android:background="@color/pink_light"
-                android:drawableEnd="@drawable/ic_add_alarm"
-                android:fontFamily="@font/aladin"
-                android:hint="@string/create_reminder"
-                android:editable="false"
-                android:imeOptions="actionDone"
-                android:inputType="none"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="10dp"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/timeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/outlined_et"
+                    android:fontFamily="@font/aladin"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:text="12:00" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/event"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/reminder">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                app:cardBackgroundColor="@color/add_cardView_color"
-                app:cardCornerRadius="10dp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/setDateBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/outlined_et"
+                    android:drawableStart="@drawable/ic_add_date"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/aladin"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/select_date"
+                    android:textAllCaps="false" />
 
-            <EditText
-                android:id="@+id/eventET"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="10"
-                android:background="@color/pink_light"
-                android:drawableEnd="@drawable/ic_event"
-                android:fontFamily="@font/aladin"
-                android:editable="false"
-                android:hint="@string/create_calendar_event"
-                android:imeOptions="actionDone"
-                android:inputType="none"
-                android:paddingHorizontal="10dp"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/dateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/outlined_et"
+                    android:fontFamily="@font/aladin"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:text="13-3-1995" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/taskDescription"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginVertical="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/event">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                app:cardBackgroundColor="@color/add_cardView_color"
-                app:cardCornerRadius="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sc"
+                    android:text="@string/get_alert_for_this_task"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/taskDescriptionET"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="10"
-                android:background="@color/pink_light"
-                android:fontFamily="@font/aladin"
-                android:gravity="start"
-                android:hint="@string/enter_task_description"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:paddingHorizontal="10dp"
-                android:paddingTop="10dp"
-                android:textAlignment="gravity"
-                android:textSize="20sp" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:checked="true" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addTaskButton"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/outlined_button_primary"
-            android:drawableStart="@drawable/ic_add"
             android:fontFamily="@font/aladin"
             android:paddingHorizontal="20dp"
-            android:text="@string/add_task"
+            android:text="@string/done"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:drawableTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

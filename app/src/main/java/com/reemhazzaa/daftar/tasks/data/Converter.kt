@@ -1,7 +1,7 @@
-package com.reemhazzaa.daftar.data.tasks
+package com.reemhazzaa.daftar.tasks.data
 
 import androidx.room.TypeConverter
-import com.reemhazzaa.daftar.data.tasks.models.Priority
+import com.reemhazzaa.daftar.tasks.data.models.Priority
 
 class Converter {
     @TypeConverter

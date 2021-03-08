@@ -1,8 +1,8 @@
-package com.reemhazzaa.daftar.data.tasks
+package com.reemhazzaa.daftar.tasks.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.reemhazzaa.daftar.data.tasks.models.Task
+import com.reemhazzaa.daftar.tasks.data.models.Task
 
 @Dao
 interface TasksDao {

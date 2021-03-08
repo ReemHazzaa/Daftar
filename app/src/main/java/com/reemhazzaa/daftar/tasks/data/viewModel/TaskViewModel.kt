@@ -1,12 +1,12 @@
-package com.reemhazzaa.daftar.data.tasks.viewModel
+package com.reemhazzaa.daftar.tasks.data.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.reemhazzaa.daftar.data.tasks.TasksDatabase
-import com.reemhazzaa.daftar.data.tasks.models.Task
-import com.reemhazzaa.daftar.data.tasks.repository.TasksRepository
+import com.reemhazzaa.daftar.tasks.data.TasksDatabase
+import com.reemhazzaa.daftar.tasks.data.models.Task
+import com.reemhazzaa.daftar.tasks.data.repository.TasksRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

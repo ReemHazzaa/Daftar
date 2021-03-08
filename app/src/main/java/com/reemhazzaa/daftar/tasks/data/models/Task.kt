@@ -1,4 +1,4 @@
-package com.reemhazzaa.daftar.data.tasks.models
+package com.reemhazzaa.daftar.tasks.data.models
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -13,6 +13,6 @@ data class Task(
     var title: String,
     var priority: Priority,
     var description: String,
-    var alarm: String,
-    var event: String
+    var time: String,
+    var date: String
 ): Parcelable

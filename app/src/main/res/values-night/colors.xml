@@ -14,4 +14,7 @@
     <color name="title_color">@color/amber_primary</color>
     <color name="add_cardView_color">@color/amber_dark</color>
     <color name="spinner_item_color">@color/white</color>
+
+    <color name="grey">#F6F6F6</color>
+    <color name="darker_grey">#40F6F6F6</color>
 </resources>
