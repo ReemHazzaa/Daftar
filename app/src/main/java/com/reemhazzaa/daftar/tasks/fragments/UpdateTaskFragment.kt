@@ -1,22 +1,28 @@
 package com.reemhazzaa.daftar.tasks.fragments
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.reemhazzaa.daftar.R
+import com.reemhazzaa.daftar.databinding.FragmentAddTaskBinding
 import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.data.viewModel.SharedViewModel
 import com.reemhazzaa.daftar.tasks.data.viewModel.TaskViewModel
 import com.reemhazzaa.daftar.databinding.FragmentUpdateTaskBinding
 import com.reemhazzaa.daftar.tasks.*
 import com.reemhazzaa.daftar.tasks.utils.hideVirtualKeyboard
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UpdateTaskFragment : Fragment() {
     private var _binding: FragmentUpdateTaskBinding? = null
@@ -24,6 +30,7 @@ class UpdateTaskFragment : Fragment() {
     private val args by navArgs<UpdateTaskFragmentArgs>()
     private val tasksViewModel: TaskViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
+    private lateinit var myCalendar: Calendar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +39,27 @@ class UpdateTaskFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateTaskBinding.inflate(layoutInflater, container, false)
 
-        updateUI(args.currentItem)
+        myCalendar = Calendar.getInstance()
 
+        // change spinner item look
+        val arrayAdapter = ArrayAdapter(
+            requireContext(),
+            R.layout.item_spinner,
+            requireContext().resources.getStringArray(R.array.priorities)
+        )
+        binding.apply {
+            spinner.apply {
+                adapter = arrayAdapter
+                onItemSelectedListener = sharedViewModel.listener
+            }
+            setTimeBT.setOnClickListener {
+                openTimePicker()
+            }
+            setDateBT.setOnClickListener {
+                openDatePicker()
+            }
+        }
+        updateUI(args.currentItem)
         return binding.root
     }
 
@@ -49,7 +75,47 @@ class UpdateTaskFragment : Fragment() {
             deleteTaskButton.setOnClickListener {
                 confirmDeleteItem()
             }
+            timeTV.text = currentItem.time
+            dateTV.text = currentItem.date
         }
+    }
+
+    private fun openTimePicker() {
+        val mCurrentTime = Calendar.getInstance()
+        val hour = mCurrentTime[Calendar.HOUR_OF_DAY]
+        val minute = mCurrentTime[Calendar.MINUTE]
+        val mTimePicker: TimePickerDialog = TimePickerDialog(
+            requireContext(),
+            { timePicker, selectedHour, selectedMinute ->
+                val reminderTime = "$selectedHour:$selectedMinute"
+                binding.timeTV.text = reminderTime
+            }, hour, minute, false
+        ) // 12 hour time
+
+        mTimePicker.show()
+    }
+
+    private fun openDatePicker() {
+        val date: DatePickerDialog.OnDateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, monthOfYear)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                updateEditTextWithDate()
+            }
+        DatePickerDialog(
+            requireContext(), date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
+            myCalendar[Calendar.DAY_OF_MONTH]
+        ).show()
+    }
+
+    private fun updateEditTextWithDate() {
+        val myFormat = "dd-MM-yyyy" //In which you need put here
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        val formattedDate = sdf.format(myCalendar.time)
+
+        binding.dateTV.text = formattedDate
     }
 
     private fun confirmDeleteItem() {
@@ -69,8 +135,8 @@ class UpdateTaskFragment : Fragment() {
     private fun attemptUpdateItemInDb() {
         val title = binding.titleET.text.toString().trim()
         val priority = binding.spinner.selectedItemPosition
-        val reminder = binding.taskReminderET.text.toString().trim()
-        val event = binding.eventET.text.toString().trim()
+        val time = binding.timeTV.text.toString().trim()
+        val date = binding.dateTV.text.toString().trim()
         val description = binding.taskDescriptionET.text.toString().trim()
 
         // INIT ERROR(s)
@@ -100,7 +166,7 @@ class UpdateTaskFragment : Fragment() {
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            updateTaskInDb(title, description, reminder, event, priority)
+            updateTaskInDb(title, description, time, date, priority)
         }
     }
 

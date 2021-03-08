@@ -25,11 +25,15 @@ class AddTaskFragment : Fragment() {
 
     private var _binding: FragmentAddTaskBinding? = null
     private val binding get() = _binding!!
-
     private val tasksViewModel: TaskViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
-
     private lateinit var myCalendar: Calendar
+
+    private var globalYear = 2021
+    private var globalMonth = 1
+    private var globalDay = 1
+    private var globalHour = 1
+    private var globalMinute = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,8 +64,14 @@ class AddTaskFragment : Fragment() {
             setDateBT.setOnClickListener {
                 openDatePicker()
             }
+            alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    setAlarm()
+                } else {
+                    sharedViewModel.cancelAlarm(requireContext())
+                }
+            }
         }
-
         return binding.root
     }
 
@@ -73,7 +83,11 @@ class AddTaskFragment : Fragment() {
             requireContext(),
             { timePicker, selectedHour, selectedMinute ->
                 val reminderTime = "$selectedHour:$selectedMinute"
+
                 binding.timeTV.text = reminderTime
+                globalHour = selectedHour
+                globalMinute = selectedMinute
+
             }, hour, minute, false
         ) // 12 hour time
 
@@ -88,6 +102,10 @@ class AddTaskFragment : Fragment() {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
                 updateEditTextWithDate()
+
+                globalYear = year
+                globalMonth = monthOfYear
+                globalDay = dayOfMonth
             }
         DatePickerDialog(
             requireContext(), date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
@@ -121,6 +139,25 @@ class AddTaskFragment : Fragment() {
         // VALIDATE
         var focusView: View? = null
         var cancel = false
+
+        // Date and Time
+        val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
+        c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
+        if (c.before(Calendar.getInstance())) {
+            cancel = true
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.invalid_date),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.alarm_set_successfully),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         if (time.isBlank() || date.isBlank()) {
             cancel = true
             Toast.makeText(
@@ -168,6 +205,17 @@ class AddTaskFragment : Fragment() {
         Toast.makeText(requireContext(), getString(R.string.success_add), Toast.LENGTH_SHORT).show()
         hideVirtualKeyboard(requireActivity())
         findNavController().navigate(R.id.action_addTaskFragment_to_tasksListFragment)
+
+        setAlarm()
+    }
+
+    private fun setAlarm() {
+        val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
+        c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
+
+        if (binding.alarmSwitch.isChecked) {
+            sharedViewModel.startAlarm(c, requireContext())
+        }
     }
 
     override fun onDestroyView() {

@@ -42,6 +42,8 @@
     <string name="task_description">Task description</string>
     <string name="date_time_error">Please, enter time and date</string>
     <string name="invalid_date">Invalid date</string>
+    <string name="task_reminder_body">Your task alert is due to now!!</string>
+    <string name="alarm_set_successfully">Alarm set successfully</string>
 
     <string-array name="priorities">
         <item>High priority</item>
