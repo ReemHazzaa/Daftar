@@ -213,11 +213,6 @@ class AddTaskFragment : Fragment() {
     private fun setAlarm() {
         val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
         c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
-        Log.e("year", globalYear.toString())
-        Log.e("globalMonth", globalMonth.toString())
-        Log.e("globalDay", globalDay.toString())
-        Log.e("globalHour", globalHour.toString())
-        Log.e("globalMinute", globalMinute.toString())
         if (binding.alarmSwitch.isChecked) {
             sharedViewModel.startAlarm(c, requireContext().applicationContext)
         }

@@ -126,39 +126,6 @@
                 android:layout_marginTop="10dp">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/setTimeBT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@drawable/outlined_et"
-                    android:drawableStart="@drawable/ic_circular_alarm_clock_tool"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/aladin"
-                    android:paddingHorizontal="20dp"
-                    android:text="@string/select_time"
-                    android:textAllCaps="false" />
-
-                <TextView
-                    android:id="@+id/timeTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/outlined_et"
-                    android:fontFamily="@font/aladin"
-                    android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:textAlignment="gravity"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    tools:text="12:00" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/setDateBT"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
@@ -183,6 +150,39 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     tools:text="13-3-1995" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/setTimeBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/outlined_et"
+                    android:drawableStart="@drawable/ic_circular_alarm_clock_tool"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/aladin"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/select_time"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:id="@+id/timeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/outlined_et"
+                    android:fontFamily="@font/aladin"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:text="12:00" />
 
             </LinearLayout>
 
