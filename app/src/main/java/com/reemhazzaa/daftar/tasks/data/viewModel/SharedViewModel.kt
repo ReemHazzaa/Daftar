@@ -45,9 +45,9 @@ class SharedViewModel (application: Application): AndroidViewModel(application) 
         val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(ctx, AlertReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(ctx,
-            1, intent, 0)
-        if (c.before(Calendar.getInstance())) {
-            c.add(Calendar.DATE, 1)
+            10, intent, 0)
+        if (c.after(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 0)
         } else {
             Toast.makeText(ctx, ctx.getString(R.string.invalid_date), Toast.LENGTH_SHORT).show()
         }

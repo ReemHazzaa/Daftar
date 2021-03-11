@@ -3,6 +3,7 @@ package com.reemhazzaa.daftar.tasks.fragments
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -143,17 +144,17 @@ class AddTaskFragment : Fragment() {
         // Date and Time
         val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
         c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
-        if (c.before(Calendar.getInstance())) {
+        if (c.after(Calendar.getInstance())) {
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.alarm_set_successfully),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
             cancel = true
             Toast.makeText(
                 requireContext(),
                 requireContext().getString(R.string.invalid_date),
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            Toast.makeText(
-                requireContext(),
-                requireContext().getString(R.string.alarm_set_successfully),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -212,9 +213,13 @@ class AddTaskFragment : Fragment() {
     private fun setAlarm() {
         val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
         c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
-
+        Log.e("year", globalYear.toString())
+        Log.e("globalMonth", globalMonth.toString())
+        Log.e("globalDay", globalDay.toString())
+        Log.e("globalHour", globalHour.toString())
+        Log.e("globalMinute", globalMinute.toString())
         if (binding.alarmSwitch.isChecked) {
-            sharedViewModel.startAlarm(c, requireContext())
+            sharedViewModel.startAlarm(c, requireContext().applicationContext)
         }
     }
 
