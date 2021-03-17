@@ -2,10 +2,12 @@ package com.reemhazzaa.daftar.tasks.fragments
 
 import android.view.View
 import android.widget.Button
+import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.reemhazzaa.daftar.R
+import com.reemhazzaa.daftar.tasks.data.models.Priority
 import com.reemhazzaa.daftar.tasks.data.models.Task
 
 /**
@@ -31,10 +33,21 @@ class BindingAdapters {
         @JvmStatic
         @BindingAdapter("android:emptyDatabase")
         fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
-            when(emptyDatabase.value) {
+            when (emptyDatabase.value) {
                 true -> view.visibility = View.VISIBLE
                 false -> view.visibility = View.INVISIBLE
             }
         }
+
+        @JvmStatic
+        @BindingAdapter("android:parsePriorityToSpinnerSelection")
+        fun parsePriorityToSpinnerSelection(view: Spinner, priority: Priority) {
+            when (priority) {
+                Priority.HIGH -> view.setSelection(0)
+                Priority.MEDIUM -> view.setSelection(1)
+                Priority.LOW -> view.setSelection(2)
+            }
+        }
+
     }
 }

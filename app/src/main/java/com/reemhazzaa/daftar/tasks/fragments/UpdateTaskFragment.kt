@@ -14,12 +14,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.reemhazzaa.daftar.R
-import com.reemhazzaa.daftar.databinding.FragmentAddTaskBinding
+import com.reemhazzaa.daftar.databinding.FragmentUpdateTaskBinding
 import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.data.viewModel.SharedViewModel
 import com.reemhazzaa.daftar.tasks.data.viewModel.TaskViewModel
-import com.reemhazzaa.daftar.databinding.FragmentUpdateTaskBinding
-import com.reemhazzaa.daftar.tasks.*
+import com.reemhazzaa.daftar.tasks.parsePriorityIntToString
 import com.reemhazzaa.daftar.tasks.utils.hideVirtualKeyboard
 import java.text.SimpleDateFormat
 import java.util.*
@@ -44,7 +43,7 @@ class UpdateTaskFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateTaskBinding.inflate(layoutInflater, container, false)
-
+        binding.args = args
         myCalendar = Calendar.getInstance()
 
         // change spinner item look
@@ -64,26 +63,22 @@ class UpdateTaskFragment : Fragment() {
             setDateBT.setOnClickListener {
                 openDatePicker()
             }
-        }
-        updateUI(args.currentItem)
-        return binding.root
-    }
-
-    private fun updateUI(currentItem: Task) {
-        binding.apply {
-            titleET.setText(currentItem.title)
-            taskDescriptionET.setText(currentItem.description)
-            spinner.setSelection(parsePriorityToInt(currentItem.priority))
-            spinner.onItemSelectedListener = sharedViewModel.listener
             updateTaskButton.setOnClickListener {
                 attemptUpdateItemInDb()
             }
             deleteTaskButton.setOnClickListener {
                 confirmDeleteItem()
             }
-            timeTV.text = currentItem.time
-            dateTV.text = currentItem.date
+            alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    attemptUpdateItemInDb()
+                } else {
+                    sharedViewModel.cancelAlarm(requireContext())
+                }
+            }
+
         }
+        return binding.root
     }
 
     private fun openTimePicker() {
@@ -134,11 +129,11 @@ class UpdateTaskFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Delete '$itemTitle'")
         builder.setMessage("Are you sure you want to delete '$itemTitle'?")
-        builder.setPositiveButton(getString(R.string.yes)) { _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
             tasksViewModel.deleteItem(args.currentItem)
             onOperationSuccess("Successfully deleted '$itemTitle'")
         }
-        builder.setNegativeButton("No") { _,_ ->
+        builder.setNegativeButton("No") { _, _ ->
         }
         builder.create().show()
     }
@@ -161,6 +156,34 @@ class UpdateTaskFragment : Fragment() {
         // VALIDATE
         var focusView: View? = null
         var cancel = false
+
+        // Date and Time
+        val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
+        c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
+        if (c.after(Calendar.getInstance())) {
+            setAlarm(c)
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.alarm_set_successfully),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            cancel = true
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.invalid_date),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        if (time.isBlank() || date.isBlank()) {
+            cancel = true
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.date_time_error),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         if (description.isBlank()) {
             binding.taskDescriptionET.setError(
                 requireContext().getString(R.string.cant_be_empty),
@@ -194,7 +217,9 @@ class UpdateTaskFragment : Fragment() {
             description = description,
             priority = parsePriorityIntToString(priority),
             date = event,
-            time = reminder
+            time = reminder,
+            isAlarmChecked = binding.alarmSwitch.isChecked,
+            isDone = false
         )
         tasksViewModel.updateData(task)
         onOperationSuccess(getString(R.string.success_update))
@@ -204,13 +229,9 @@ class UpdateTaskFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         hideVirtualKeyboard(requireActivity())
         findNavController().navigate(R.id.action_updateTaskFragment_to_tasksListFragment)
-
-        setAlarm()
     }
 
-    private fun setAlarm() {
-        val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
-        c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
+    private fun setAlarm(c: Calendar) {
         if (binding.alarmSwitch.isChecked) {
             sharedViewModel.startAlarm(c, requireContext().applicationContext)
         }

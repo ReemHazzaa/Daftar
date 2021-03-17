@@ -67,7 +67,7 @@ class AddTaskFragment : Fragment() {
             }
             alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    setAlarm()
+                    attemptInsertTaskToDB()
                 } else {
                     sharedViewModel.cancelAlarm(requireContext())
                 }
@@ -145,6 +145,7 @@ class AddTaskFragment : Fragment() {
         val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
         c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
         if (c.after(Calendar.getInstance())) {
+            setAlarm(c)
             Toast.makeText(
                 requireContext(),
                 requireContext().getString(R.string.alarm_set_successfully),
@@ -200,19 +201,17 @@ class AddTaskFragment : Fragment() {
             priority = parsePriorityIntToString(priority),
             description = description,
             time = time,
-            date = date
+            date = date,
+            isAlarmChecked = binding.alarmSwitch.isChecked,
+            isDone = false
         )
         tasksViewModel.insertData(newTask)
         Toast.makeText(requireContext(), getString(R.string.success_add), Toast.LENGTH_SHORT).show()
         hideVirtualKeyboard(requireActivity())
         findNavController().navigate(R.id.action_addTaskFragment_to_tasksListFragment)
-
-        setAlarm()
     }
 
-    private fun setAlarm() {
-        val c: Calendar = Calendar.getInstance(Locale.ENGLISH)
-        c.set(globalYear, globalMonth, globalDay, globalHour, globalMinute, 0)
+    private fun setAlarm(c: Calendar) {
         if (binding.alarmSwitch.isChecked) {
             sharedViewModel.startAlarm(c, requireContext().applicationContext)
         }

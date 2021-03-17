@@ -14,5 +14,7 @@ data class Task(
     var priority: Priority,
     var description: String,
     var time: String,
-    var date: String
+    var date: String,
+    var isAlarmChecked: Boolean,
+    var isDone: Boolean
 ): Parcelable

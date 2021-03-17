@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="sharedViewModel"
             type="com.reemhazzaa.daftar.tasks.data.viewModel.SharedViewModel" />
@@ -59,12 +60,12 @@
             android:background="@drawable/outlined_button_primary"
             android:drawableStart="@drawable/ic_add"
             android:fontFamily="@font/aladin"
+            android:navigateToAddFragment="@{true}"
             android:paddingHorizontal="20dp"
             android:text="@string/add_task"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:navigateToAddFragment="@{true}"
             app:drawableTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -74,8 +75,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.3"
+            android:emptyDatabase="@{sharedViewModel.emptyDatabase}"
             android:visibility="invisible"
-            android:emptyDatabase="@{sharedViewModel.checkIfDatabaseEmpty}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -89,12 +90,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.3"
+            android:emptyDatabase="@{sharedViewModel.emptyDatabase}"
             android:fontFamily="@font/aladin"
             android:text="@string/your_task_list_is_empty"
             android:textColor="@color/title_color"
             android:textSize="20sp"
             android:visibility="invisible"
-            android:emptyDatabase="@{sharedViewModel.checkIfDatabaseEmpty}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

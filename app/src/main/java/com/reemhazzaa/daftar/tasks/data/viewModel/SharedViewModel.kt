@@ -8,7 +8,6 @@ import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -17,15 +16,15 @@ import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.receivers.AlertReceiver
 import java.util.*
 
-class SharedViewModel(application: Application): AndroidViewModel(application) {
+class SharedViewModel(application: Application) : AndroidViewModel(application) {
     val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun checkIfDatabaseEmpty(tasksList: List<Task>){
+    fun checkIfDatabaseEmpty(tasksList: List<Task>) {
         emptyDatabase.value = tasksList.isEmpty()
     }
 
     val listener: AdapterView.OnItemSelectedListener = object :
-        AdapterView.OnItemSelectedListener{
+        AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {}
         override fun onItemSelected(
             parent: AdapterView<*>?,
@@ -33,10 +32,31 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
             position: Int,
             id: Long
         ) {
-            when(position){
-                0 -> { (parent?.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(application, R.color.red_dark)) }
-                1 -> { (parent?.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(application, R.color.yellow_dark)) }
-                2 -> { (parent?.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(application, R.color.green_dark)) }
+            when (position) {
+                0 -> {
+                    (parent?.getChildAt(0) as TextView).setTextColor(
+                        ContextCompat.getColor(
+                            application,
+                            R.color.red_dark
+                        )
+                    )
+                }
+                1 -> {
+                    (parent?.getChildAt(0) as TextView).setTextColor(
+                        ContextCompat.getColor(
+                            application,
+                            R.color.yellow_dark
+                        )
+                    )
+                }
+                2 -> {
+                    (parent?.getChildAt(0) as TextView).setTextColor(
+                        ContextCompat.getColor(
+                            application,
+                            R.color.green_dark
+                        )
+                    )
+                }
             }
         }
     }
@@ -44,21 +64,20 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     fun startAlarm(c: Calendar, ctx: Context) {
         val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(ctx, AlertReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(ctx,
-            10, intent, 0)
-        if (c.after(Calendar.getInstance())) {
-            c.add(Calendar.DATE, 0)
-        } else {
-            Toast.makeText(ctx, ctx.getString(R.string.invalid_date), Toast.LENGTH_SHORT).show()
-        }
+        val pendingIntent = PendingIntent.getBroadcast(
+            ctx,
+            10, intent, 0
+        )
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
     }
 
     fun cancelAlarm(ctx: Context) {
         val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(ctx, AlertReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(ctx,
-            1, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(
+            ctx,
+            1, intent, 0
+        )
         alarmManager.cancel(pendingIntent)
     }
 }
