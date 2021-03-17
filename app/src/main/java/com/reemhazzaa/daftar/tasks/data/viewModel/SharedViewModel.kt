@@ -17,11 +17,11 @@ import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.receivers.AlertReceiver
 import java.util.*
 
-class SharedViewModel (application: Application): AndroidViewModel(application) {
+class SharedViewModel(application: Application): AndroidViewModel(application) {
     val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun checkIfDatabaseEmpty(toDoData: List<Task>){
-        emptyDatabase.value = toDoData.isEmpty()
+    fun checkIfDatabaseEmpty(tasksList: List<Task>){
+        emptyDatabase.value = tasksList.isEmpty()
     }
 
     val listener: AdapterView.OnItemSelectedListener = object :

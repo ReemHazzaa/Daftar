@@ -37,33 +37,20 @@ class TasksListFragment : Fragment() {
         (this.activity as MainActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
         setHasOptionsMenu(true)
 
+        binding.lifecycleOwner = this
+        binding.sharedViewModel = sharedViewModel
+
         binding.tasksRV.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+
         tasksViewModel.getAllData.observe(viewLifecycleOwner, Observer { tasksList ->
             sharedViewModel.checkIfDatabaseEmpty(tasksList)
             listAdapter.setList(tasksList)
         })
-        binding.addTaskButton.setOnClickListener {
-            findNavController().navigate(R.id.action_tasksListFragment_to_addTaskFragment)
-        }
-
-        sharedViewModel.emptyDatabase.observe(viewLifecycleOwner, Observer { isDatabaseEmpty ->
-            showNoData(isDatabaseEmpty)
-        })
 
         return binding.root
-    }
-
-    private fun showNoData(databaseEmpty: Boolean) {
-        if (databaseEmpty){
-            binding.noDataIV.visibility = View.VISIBLE
-            binding.errorTV.visibility = View.VISIBLE
-        } else {
-            binding.noDataIV.visibility = View.INVISIBLE
-            binding.errorTV.visibility = View.INVISIBLE
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
