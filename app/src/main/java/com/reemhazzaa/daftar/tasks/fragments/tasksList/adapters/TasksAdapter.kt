@@ -2,6 +2,7 @@ package com.reemhazzaa.daftar.tasks.fragments.tasksList.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.reemhazzaa.daftar.databinding.ItemTaskBinding
 import com.reemhazzaa.daftar.tasks.data.models.Task
@@ -35,8 +36,10 @@ class TasksAdapter : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     override fun getItemCount(): Int = list.size
 
     fun setList(filteredList: List<Task>) {
+        val tasksDiffUtil = TasksDiffUtil(list, filteredList)
+        val diffUtilResult = DiffUtil.calculateDiff(tasksDiffUtil)
         list = filteredList
-        this.notifyDataSetChanged()
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 
     fun getList(): List<Task> = list

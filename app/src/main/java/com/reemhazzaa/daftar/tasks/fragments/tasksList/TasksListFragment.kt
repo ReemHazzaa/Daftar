@@ -17,7 +17,7 @@ import com.reemhazzaa.daftar.tasks.data.viewModel.SharedViewModel
 import com.reemhazzaa.daftar.tasks.data.viewModel.TaskViewModel
 import com.reemhazzaa.daftar.databinding.FragmentTasksListBinding
 import com.reemhazzaa.daftar.tasks.data.models.Task
-import com.reemhazzaa.daftar.tasks.fragments.tasksList.adapters.SwipeToDelete
+import com.reemhazzaa.daftar.tasks.utils.SwipeToDelete
 import com.reemhazzaa.daftar.tasks.fragments.tasksList.adapters.TasksAdapter
 import com.reemhazzaa.daftar.tasks.utils.hideVirtualKeyboard
 

@@ -1,4 +1,4 @@
-package com.reemhazzaa.daftar.tasks.fragments.tasksList.adapters
+package com.reemhazzaa.daftar.tasks.utils
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
