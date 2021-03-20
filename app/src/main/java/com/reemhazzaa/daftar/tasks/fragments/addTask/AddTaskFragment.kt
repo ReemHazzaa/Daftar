@@ -1,9 +1,8 @@
-package com.reemhazzaa.daftar.tasks.fragments
+package com.reemhazzaa.daftar.tasks.fragments.addTask
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

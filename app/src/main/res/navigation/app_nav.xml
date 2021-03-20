@@ -8,7 +8,7 @@
     <!-- Tasks -->
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.reemhazzaa.daftar.tasks.fragments.AddTaskFragment"
+        android:name="com.reemhazzaa.daftar.tasks.fragments.addTask.AddTaskFragment"
         android:label="fragment_add_task"
         tools:layout="@layout/fragment_add_task">
         <action
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/updateTaskFragment"
-        android:name="com.reemhazzaa.daftar.tasks.fragments.UpdateTaskFragment"
+        android:name="com.reemhazzaa.daftar.tasks.fragments.updateTask.UpdateTaskFragment"
         android:label="fragment_update_task"
         tools:layout="@layout/fragment_update_task">
         <action

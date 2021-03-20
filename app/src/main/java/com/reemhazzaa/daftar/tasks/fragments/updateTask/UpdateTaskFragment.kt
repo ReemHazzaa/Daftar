@@ -1,4 +1,4 @@
-package com.reemhazzaa.daftar.tasks.fragments
+package com.reemhazzaa.daftar.tasks.fragments.updateTask
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -18,6 +18,7 @@ import com.reemhazzaa.daftar.databinding.FragmentUpdateTaskBinding
 import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.data.viewModel.SharedViewModel
 import com.reemhazzaa.daftar.tasks.data.viewModel.TaskViewModel
+import com.reemhazzaa.daftar.tasks.fragments.updateTask.UpdateTaskFragmentArgs
 import com.reemhazzaa.daftar.tasks.parsePriorityIntToString
 import com.reemhazzaa.daftar.tasks.utils.hideVirtualKeyboard
 import java.text.SimpleDateFormat

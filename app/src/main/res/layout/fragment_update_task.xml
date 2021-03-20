@@ -7,7 +7,7 @@
 
         <variable
             name="args"
-            type="com.reemhazzaa.daftar.tasks.fragments.UpdateTaskFragmentArgs" />
+            type="com.reemhazzaa.daftar.tasks.fragments.updateTask.UpdateTaskFragmentArgs" />
     </data>
 
     <ScrollView
