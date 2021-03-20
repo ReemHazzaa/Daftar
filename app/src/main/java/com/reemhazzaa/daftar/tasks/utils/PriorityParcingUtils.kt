@@ -1,8 +1,6 @@
 package com.reemhazzaa.daftar.tasks
 
-import android.app.Activity
 import android.content.Context
-import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import com.reemhazzaa.daftar.R
 import com.reemhazzaa.daftar.tasks.data.models.Priority

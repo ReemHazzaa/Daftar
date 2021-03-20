@@ -30,4 +30,10 @@ interface TasksDao {
 
     @Query("SELECT * FROM tasks_table ORDER BY CASE WHEN priority LIKE 'L%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'H%' THEN 3 END")
     fun sortByLowPriority(): LiveData<List<Task>>
+
+    @Query("UPDATE tasks_table SET isDone = 1 WHERE id = :taskID")
+    fun doneTask(taskID: Int)
+
+    @Query("UPDATE tasks_table SET isDone = 0 WHERE id = :taskID")
+    fun unDoneTask(taskID: Int)
 }

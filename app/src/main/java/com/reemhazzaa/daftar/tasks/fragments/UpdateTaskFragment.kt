@@ -204,12 +204,13 @@ class UpdateTaskFragment : Fragment() {
         }
     }
 
-    private fun updateTaskInDb(
+    fun updateTaskInDb(
         title: String,
         description: String,
         reminder: String,
         event: String,
-        priority: Int
+        priority: Int,
+        isDone:Boolean = false
     ) {
         val task = Task(
             id = args.currentItem.id,
@@ -219,7 +220,7 @@ class UpdateTaskFragment : Fragment() {
             date = event,
             time = reminder,
             isAlarmChecked = binding.alarmSwitch.isChecked,
-            isDone = false
+            isDone = isDone
         )
         tasksViewModel.updateData(task)
         onOperationSuccess(getString(R.string.success_update))

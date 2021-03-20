@@ -1,5 +1,6 @@
 package com.reemhazzaa.daftar.tasks.fragments.tasksList
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,38 +11,35 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.reemhazzaa.daftar.R
+import com.reemhazzaa.daftar.databinding.ItemTaskBinding
 import com.reemhazzaa.daftar.tasks.data.models.Task
 import com.reemhazzaa.daftar.tasks.parseIndicatorBackgroundBasedOnPriority
 import com.reemhazzaa.daftar.tasks.parseItemBackgroundBasedOnPriority
 
 
-class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
+class TasksAdapter : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
-    private lateinit var currentViewHolder: TaskViewHolder
-    private var list = listOf<Task>()
+    private var list = emptyList<Task>()
 
-    class TaskViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    class TaskViewHolder(private val binding: ItemTaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        private val ctx = itemView.context
+        fun bind(task: Task) {
+            binding.task = task
+            binding.executePendingBindings()
+        }
 
-        var lightColorCV: CardView = itemView.findViewById(R.id.lightColorCV)
-        var lightColorCV2: ConstraintLayout = itemView.findViewById(R.id.lightColorCV2)
-        var titleTV: TextView = itemView.findViewById(R.id.titleTV)
-        var descTV: TextView = itemView.findViewById(R.id.descTV)
-        var darkColorCV: CardView = itemView.findViewById(R.id.darkColorCV)
-        var setDateBT: TextView = itemView.findViewById(R.id.setDateBT)
-        var setTimeBT: TextView = itemView.findViewById(R.id.setTimeBT)
-
+        companion object{
+            fun from(parent: ViewGroup): TaskViewHolder{
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ItemTaskBinding.inflate(layoutInflater, parent, false)
+                return TaskViewHolder(binding)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        currentViewHolder = TaskViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_task, parent, false)
-        )
-
-        return currentViewHolder
+        return TaskViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int = list.size
@@ -54,35 +52,7 @@ class TasksAdapter() : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     fun getList(): List<Task> = list
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val ctx = holder.titleTV.context
-        holder.titleTV.text = list[position].title
-        holder.descTV.text = list[position].description
-        holder.setDateBT.text = list[position].date
-        holder.setTimeBT.text = list[position].time
-
-        holder.itemView.setOnClickListener {
-            val action = TasksListFragmentDirections.actionTasksListFragmentToUpdateTaskFragment(list[position])
-            holder.itemView.findNavController().navigate(action)
-        }
-
-//        holder.lightColorCV.setCardBackgroundColor(
-//            parseItemBackgroundBasedOnPriority(
-//                ctx,
-//                list[position].priority
-//            )
-//        )
-        holder.lightColorCV2.setBackgroundColor(
-            parseItemBackgroundBasedOnPriority(
-                ctx,
-                list[position].priority
-            )
-        )
-        holder.darkColorCV.setCardBackgroundColor(
-            parseIndicatorBackgroundBasedOnPriority(
-                ctx,
-                list[position].priority
-            )
-        )
-
+        val currentItem = list[position]
+        holder.bind(currentItem)
     }
 }

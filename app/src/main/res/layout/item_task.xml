@@ -1,107 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lightColorCV"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:layout_marginBottom="5dp"
-    app:cardCornerRadius="20dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lightColorCV2"
+    <data>
+
+        <variable
+            name="task"
+            type="com.reemhazzaa.daftar.tasks.data.models.Task" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lightColorCV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:background="@color/yellow_light">
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="20dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/darkColorCV"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:cardBackgroundColor="@color/yellow_dark"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/titleTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/alegreya_sc"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/darkColorCV"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Task title" />
-
-        <TextView
-            android:id="@+id/descTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/aladin"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTV"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="Task description description." />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lightColorCV2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descTV">
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:sendDataToUpdateFragment="@{task}"
+            android:parseItemBackgroundBasedOnPriority="@{task.priority}"
+            tools:background="@color/yellow_light">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/darkColorCV"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:parseIndicatorBackgroundBasedOnPriority="@{task.priority}"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:cardBackgroundColor="@color/yellow_dark" />
+
+            <CheckBox
+                android:id="@+id/doneCheckBox"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:button="@drawable/checkbox_selector"
+                android:buttonTint="@android:color/black"
+                android:checked="@{task.done}"
+                android:updateTaskIsDone="@{task}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="doneCheckBox" />
 
             <TextView
-                android:id="@+id/setDateBT"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/aladin"
-                android:gravity="center_vertical"
-                android:textAllCaps="false"
-                app:drawableStartCompat="@drawable/ic_add_date"
-                tools:text="12:00" />
+                android:id="@+id/titleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/alegreya_sc"
+                android:text="@{task.title}"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:strikeTextView="@{task.done}"
+                app:layout_constraintEnd_toStartOf="@+id/darkColorCV"
+                app:layout_constraintStart_toEndOf="@+id/barrier"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Task title" />
 
             <TextView
-                android:id="@+id/setTimeBT"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:drawablePadding="10dp"
+                android:id="@+id/descTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/aladin"
-                android:gravity="center_vertical"
-                android:textAllCaps="false"
-                app:drawableStartCompat="@drawable/ic_circular_alarm_clock_tool"
-                tools:text="13-3-1995" />
+                android:text="@{task.description}"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/barrier"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Task description description." />
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/barrier"
+                app:layout_constraintTop_toBottomOf="@+id/descTV">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/setDateBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/aladin"
+                    android:gravity="center_vertical"
+                    android:text="@{task.date}"
+                    android:textAllCaps="false"
+                    tools:text="13-3-1995" />
 
-</androidx.cardview.widget.CardView>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/setTimeBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/aladin"
+                    android:gravity="center_vertical"
+                    android:text="@{task.time}"
+                    android:textAllCaps="false"
+                    tools:text="12:00" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
 

@@ -1,14 +1,23 @@
 package com.reemhazzaa.daftar.tasks.fragments
 
+import android.app.Application
+import android.graphics.Paint
 import android.view.View
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.reemhazzaa.daftar.R
 import com.reemhazzaa.daftar.tasks.data.models.Priority
 import com.reemhazzaa.daftar.tasks.data.models.Task
+import com.reemhazzaa.daftar.tasks.data.viewModel.TaskViewModel
+import com.reemhazzaa.daftar.tasks.fragments.tasksList.TasksListFragmentDirections
+import com.reemhazzaa.daftar.tasks.parsePriorityToInt
 
 /**
  * This class contains all custom BindingAdapters for Tasks.
@@ -49,5 +58,94 @@ class BindingAdapters {
             }
         }
 
+        @JvmStatic
+        @BindingAdapter("android:parseItemBackgroundBasedOnPriority")
+        fun parseItemBackgroundBasedOnPriority(view: ConstraintLayout, priority: Priority) {
+            when (priority) {
+                Priority.HIGH -> view.setBackgroundColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.red_light
+                    )
+                )
+                Priority.MEDIUM -> view.setBackgroundColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.yellow_light
+                    )
+                )
+                Priority.LOW -> view.setBackgroundColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.green_light
+                    )
+                )
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:parseIndicatorBackgroundBasedOnPriority")
+        fun parseIndicatorBackgroundBasedOnPriority(view: CardView, priority: Priority) {
+            when (priority) {
+                Priority.HIGH -> view.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.red_dark
+                    )
+                )
+                Priority.MEDIUM -> view.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.yellow_dark
+                    )
+                )
+                Priority.LOW -> view.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.green_dark
+                    )
+                )
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:sendDataToUpdateFragment")
+        fun sendDataToUpdateFragment(view: ConstraintLayout, task: Task) {
+            view.setOnClickListener {
+                val action = TasksListFragmentDirections.actionTasksListFragmentToUpdateTaskFragment(task)
+                view.findNavController().navigate(action)
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:updateTaskIsDone")
+        fun updateTaskIsDone(view: CompoundButton, task: Task) {
+            view.setOnCheckedChangeListener { buttonView, isChecked ->
+                val taskViewModel = TaskViewModel(view.context.applicationContext as Application)
+                val updateTask = Task(
+                    task.id,
+                    task.title,
+                    task.priority,
+                    task.description,
+                    task.time,
+                    task.date,
+                    task.isAlarmChecked,
+                    isChecked
+                )
+                taskViewModel.updateData(
+                    updateTask
+                )
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:strikeTextView")
+        fun strikeTextView(view: TextView, drawLine: Boolean) {
+            if (drawLine) {
+                view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            } else {
+                view.paintFlags = view.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
+        }
     }
 }
