@@ -15,7 +15,9 @@
             android:id="@+id/action_addTaskFragment_to_tasksListFragment"
             app:destination="@id/tasksListFragment"
             app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_left" />
+            app:exitAnim="@anim/to_left"
+            app:popUpTo="@id/tasksListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -48,7 +50,9 @@
             android:id="@+id/action_updateTaskFragment_to_tasksListFragment"
             app:destination="@id/tasksListFragment"
             app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            app:exitAnim="@anim/to_right"
+            app:popUpTo="@id/tasksListFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="currentItem"
             app:argType="com.reemhazzaa.daftar.tasks.data.models.Task" />

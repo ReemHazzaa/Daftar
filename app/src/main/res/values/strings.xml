@@ -45,6 +45,8 @@
     <string name="task_reminder_body">Your task alert is due to now!!</string>
     <string name="alarm_set_successfully">Alarm set successfully</string>
     <string name="separator">/</string>
+    <string name="grid_layout">Grid Layout</string>
+    <string name="linear_layout">Linear Layout</string>
 
     <string-array name="priorities">
         <item>High priority</item>
