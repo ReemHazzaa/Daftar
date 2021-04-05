@@ -19,9 +19,8 @@ Adding or updating a task includes setting a date and a time and an optional set
 - [x] Tasks  
 - [ ] Notes
 ## Screenshots
-![Screenshot_2021-03-21-12-39-31-578_com reemhazzaa daftar](https://user-images.githubusercontent.com/22481776/111902191-d02dbe00-8a44-11eb-82a5-410d38b45a5b.jpg)
-![Screenshot_2021-03-21-12-39-16-900_com reemhazzaa daftar](https://user-images.githubusercontent.com/22481776/111902199-d7ed6280-8a44-11eb-9e8c-a55b9e656987.jpg)
-![Screenshot_2021-03-21-12-39-39-518_com reemhazzaa daftar](https://user-images.githubusercontent.com/22481776/111902203-dcb21680-8a44-11eb-89b7-eb886f2215c8.jpg)
-
+<kbd><img width="216" height="432" src="screenshots/1.png" alt="Tasks list Preview" /></kbd>
+<kbd><img width="216" height="432" src="screenshots/2.png" alt="Tasks list Preview" /></kbd>
+<kbd><img width="216" height="432" src="screenshots/3.png" alt="Add task Preview" /></kbd>
 
 
