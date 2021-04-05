@@ -19,7 +19,7 @@ Adding or updating a task includes setting a date and a time and an optional set
 - [x] Tasks  
 - [ ] Notes
 ## Screenshots
-<kbd><img width="216" height="432" src="https://github.com/ReemHazzaa/Daftar/tree/master/screenshots/1.png" alt="Tasks list Preview" /></kbd>
+<kbd><img width="216" height="432" src="screenshots/1.jpg" alt="Tasks list Preview" /></kbd>
 <kbd><img width="216" height="432" src="https://github.com/ReemHazzaa/Daftar/tree/master/screenshots/2.png" alt="Tasks list Preview" /></kbd>
 <kbd><img width="216" height="432" src="https://github.com/ReemHazzaa/Daftar/tree/master/screenshots/3.png" alt="Add task Preview" /></kbd>
 
